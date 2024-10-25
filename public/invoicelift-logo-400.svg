@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="arrowGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#FFD166"/>
+      <stop offset="100%" stop-color="#F5890A"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#0D1F3C"/>
+      <stop offset="100%" stop-color="#070E1C"/>
+    </linearGradient>
+    <!-- Clip to shaft only (below arrow wings) -->
+    <clipPath id="shaftClip">
+      <rect x="166" y="194" width="68" height="142"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" rx="72" fill="url(#bgGrad)"/>
+
+  <!-- Subtle warm glow at arrow base -->
+  <ellipse cx="200" cy="310" rx="75" ry="35" fill="#F5A623" opacity="0.09"/>
+
+  <!-- Arrow — bold upward chevron -->
+  <polygon
+    points="200,68  278,194  234,194  234,336  166,336  166,194  122,194"
+    fill="url(#arrowGrad)"/>
+
+  <!-- Document lines in shaft — communicate INVOICE -->
+  <line x1="150" y1="232" x2="250" y2="232"
+        stroke="white" stroke-width="6.5" stroke-linecap="round"
+        clip-path="url(#shaftClip)" opacity="0.72"/>
+  <line x1="150" y1="268" x2="250" y2="268"
+        stroke="white" stroke-width="6.5" stroke-linecap="round"
+        clip-path="url(#shaftClip)" opacity="0.50"/>
+  <line x1="150" y1="305" x2="250" y2="305"
+        stroke="white" stroke-width="6.5" stroke-linecap="round"
+        clip-path="url(#shaftClip)" opacity="0.30"/>
+
+  <!-- Thin highlight on left edge of arrowhead — depth/dimension -->
+  <line x1="200" y1="68" x2="166" y2="194"
+        stroke="white" stroke-width="2" opacity="0.18" stroke-linecap="round"/>
+</svg>
