@@ -11,3 +11,8 @@
 ## Issue: Build SME onboarding flow
 **Labels:** `feature`, `ux`
 **Description:** Implement a seamless onboarding flow for SMEs to register, upload their first invoices, and request financing.
+**Acceptance Criteria:**
+- Multi-step form for company details.
+- Secure upload for invoice documentation.
+- Clear status indicators for invoice verification.
+
