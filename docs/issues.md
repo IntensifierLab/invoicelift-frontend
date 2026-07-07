@@ -16,3 +16,9 @@
 - Secure upload for invoice documentation.
 - Clear status indicators for invoice verification.
 
+## Issue: Implement invoice registry viewer
+**Labels:** `feature`, `core`
+**Description:** Create a read-only view that pulls from the `invoice-registry` contract to show the public status of an invoice (e.g. Verified, Financed, Repaid).
+**Acceptance Criteria:**
+- Search by invoice ID.
+- Display state transitions securely fetched from the chain.
