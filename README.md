@@ -198,7 +198,7 @@ Fix all ESLint + TypeScript errors before merging.
 
 ## 🤝 Contributing
 
-See [`../../CONTRIBUTING.md`](../../CONTRIBUTING.md). UI changes should stay aligned with [`../../docs/SITE_MAP.md`](../../docs/SITE_MAP.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md) for frontend setup, component conventions, testing, and PR review expectations. UI changes should stay aligned with [`../../docs/SITE_MAP.md`](../../docs/SITE_MAP.md).
 
 ---
 
