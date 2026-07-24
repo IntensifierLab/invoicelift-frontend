@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
 import { ConnectWalletButton } from "@/components/connect-wallet-button";
+import { SiteNav } from "@/components/site-nav";
 import { WalletProvider } from "@/components/wallet-provider";
 
 export const metadata: Metadata = {
@@ -30,14 +31,6 @@ export const metadata: Metadata = {
   },
 };
 
-const nav = [
-  ["SMEs", "/smes"],
-  ["Liquidity", "/liquidity"],
-  ["Risk", "/risk"],
-  ["Roadmap", "/roadmap"],
-  ["Docs", "/docs"],
-] as const;
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -57,11 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span className="brand-text">InvoiceLift</span>
               </Link>
               <div className="nav-right">
-                <nav className="links">
-                  {nav.map(([label, href]) => (
-                    <Link key={href} href={href}>{label}</Link>
-                  ))}
-                </nav>
+                <SiteNav />
                 <ConnectWalletButton />
               </div>
             </div>

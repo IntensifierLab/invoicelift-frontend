@@ -1,7 +1,9 @@
 import { EmptyState } from "@/components/empty-state";
+import { RouteGuard } from "@/components/route-guard";
 
 export default function Page() {
   return (
+    <RouteGuard allow={["lender", "admin"]}>
     <section className="section">
       <span className="tag">Liquidity</span>
       <h2>Liquidity pools</h2>
@@ -11,6 +13,8 @@ export default function Page() {
         description="Liquidity pools open here as they launch. Provide capital to earn yield from financed invoices once the first pool is live."
         cta={{ label: "Explore the roadmap", href: "/roadmap" }}
       />
-    </section>
+    </section> 
+   </RouteGuard>
+
   );
 }

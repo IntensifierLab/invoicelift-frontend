@@ -1,7 +1,9 @@
 import { EmptyState } from "@/components/empty-state";
+import { RouteGuard } from "@/components/route-guard";
 
 export default function Page() {
   return (
+    <RouteGuard allow={["lender", "admin"]}>
     <section className="section">
       <span className="tag">Risk</span>
       <h2>Repayment monitoring</h2>
@@ -12,5 +14,7 @@ export default function Page() {
         cta={{ label: "View underwriting docs", href: "/docs" }}
       />
     </section>
+    </RouteGuard>
+
   );
 }
