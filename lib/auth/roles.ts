@@ -49,6 +49,7 @@ export const PAGE_ACCESS: Record<string, Role[]> = {
   "/smes": ["sme", "admin"],
   "/liquidity": ["lender", "admin"],
   "/risk": ["lender", "admin"],
+  "/invoices": ["lender", "admin"],
 };
 
 export function isRoleAllowed(pathname: string, role: Role | undefined): boolean {
