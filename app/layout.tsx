@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { OfflineSupport } from "@/components/offline-support";
 import "./globals.css";
 import { ConnectWalletButton } from "@/components/connect-wallet-button";
 import { SiteNav } from "@/components/site-nav";
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
+        <OfflineSupport />
         <WalletProvider>
           <header className="nav">
             <div className="container nav-inner">
