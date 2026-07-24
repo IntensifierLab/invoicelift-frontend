@@ -793,3 +793,207 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid color-mix(in srgb, #ff8a5c 45%, transparent);
   color: #ffb088;
 }
+
+/* === lender underwriting dashboard === */
+.lender-header-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.lender-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lender-updated-at {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.lender-empty {
+  color: var(--muted);
+  padding: 18px 0;
+}
+
+.lender-errors {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: color-mix(in srgb, #ff8a5c 14%, transparent);
+  border: 1px solid color-mix(in srgb, #ff8a5c 45%, transparent);
+}
+
+.lender-errors p {
+  margin: 0;
+  color: #ffb088;
+  font-size: 0.85rem;
+}
+
+.lender-errors p + p {
+  margin-top: 4px;
+}
+
+.lender-metrics {
+  padding-top: 18px;
+}
+
+.metric-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 88%, var(--bg)) 0%, var(--surface) 100%);
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.metric-tile-warning {
+  border-color: color-mix(in srgb, #ff8a5c 55%, transparent);
+}
+
+.metric-tile-label {
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metric-tile-value {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.metric-tile-warning .metric-tile-value {
+  color: #ffb088;
+}
+
+.metric-tile-sub {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.pool-health-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pool-health-row {
+  display: grid;
+  grid-template-columns: minmax(160px, 220px) 1fr 56px;
+  align-items: center;
+  gap: 12px;
+}
+
+.pool-health-label {
+  display: flex;
+  flex-direction: column;
+}
+
+.pool-health-id {
+  font-weight: 600;
+}
+
+.pool-health-amounts {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.pool-health-bar-track {
+  height: 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  overflow: hidden;
+}
+
+.pool-health-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
+.pool-health-bar-ok { background: #7ee0a8; }
+.pool-health-bar-warn { background: var(--accent); }
+.pool-health-bar-critical { background: #ff8a5c; }
+
+.pool-health-pct {
+  text-align: right;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.lender-alerts-list li {
+  margin-bottom: 6px;
+}
+
+.lender-table-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.lender-export-btn {
+  padding: 8px 14px;
+  font-size: 0.85rem;
+}
+
+.lender-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.lender-table th,
+.lender-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid color-mix(in srgb, var(--muted) 25%, transparent);
+}
+
+.lender-table th {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.lender-drilldown-toggle {
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.lender-drilldown-toggle:hover {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.lender-drilldown-row td {
+  background: color-mix(in srgb, var(--surface) 55%, transparent);
+}
+
+.lender-drilldown-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lender-drilldown-list li {
+  display: flex;
+  justify-content: space-between;
+  max-width: 320px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
