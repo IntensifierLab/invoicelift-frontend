@@ -1,20 +1,21 @@
-import { EmptyState } from "@/components/empty-state";
+import { RepaymentStatus } from "@/components/repayment-status";
+import { RepaymentWsProvider } from "@/components/repayment-ws-provider";
 import { RouteGuard } from "@/components/route-guard";
 
 export default function Page() {
   return (
     <RouteGuard allow={["lender", "admin"]}>
-    <section className="section">
-      <span className="tag">Liquidity</span>
-      <h2>Liquidity pools</h2>
-      <EmptyState
-        illustration="pools"
-        heading="No pools available yet"
-        description="Liquidity pools open here as they launch. Provide capital to earn yield from financed invoices once the first pool is live."
-        cta={{ label: "Explore the roadmap", href: "/roadmap" }}
-      />
-    </section> 
-   </RouteGuard>
-
+      <section className="section">
+        <span className="tag">Liquidity</span>
+        <h2>Your positions</h2>
+        <p style={{ color: "var(--muted)" }}>
+          Repayment progress updates live as borrowers repay. If the live
+          connection drops, this falls back to polling automatically.
+        </p>
+        <RepaymentWsProvider>
+          <RepaymentStatus />
+        </RepaymentWsProvider>
+      </section>
+    </RouteGuard>
   );
 }
