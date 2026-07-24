@@ -290,3 +290,57 @@ a { color: inherit; text-decoration: none; }
   background: color-mix(in srgb, var(--surface) 65%, transparent);
   letter-spacing: 0.04em;
 }
+
+/* === bulk CSV upload (issue #28) === */
+.bulk { margin-top: 18px; display: flex; flex-direction: column; gap: 16px; }
+.bulk-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.bulk-actions .cta, .bulk-actions .cta-secondary { margin-top: 0; cursor: pointer; }
+.bulk-file-label { position: relative; overflow: hidden; cursor: pointer; }
+.bulk-file-input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.bulk-reset {
+  background: none; border: none; color: var(--muted);
+  text-decoration: underline; cursor: pointer; font-size: 0.9rem;
+}
+.bulk-filename { margin: 0; color: var(--muted); font-size: 0.9rem; }
+.bulk-error-banner {
+  margin: 0; padding: 12px 14px; border-radius: 10px;
+  background: color-mix(in srgb, #ff6b6b 16%, transparent);
+  border: 1px solid color-mix(in srgb, #ff6b6b 45%, transparent);
+  color: #ffd9d0; font-size: 0.9rem;
+}
+.bulk-stats { display: flex; flex-wrap: wrap; gap: 10px; }
+.bulk-chip {
+  padding: 6px 12px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid var(--ring);
+}
+.bulk-chip-ok { color: #bff0c8; border-color: color-mix(in srgb, #4ade80 45%, transparent); background: color-mix(in srgb, #4ade80 14%, transparent); }
+.bulk-chip-bad { color: #ffd9d0; border-color: color-mix(in srgb, #ff6b6b 45%, transparent); background: color-mix(in srgb, #ff6b6b 14%, transparent); }
+.bulk-table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); }
+.bulk-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.bulk-table th, .bulk-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid color-mix(in srgb, var(--muted) 22%, transparent); }
+.bulk-table th { color: var(--muted); font-weight: 600; background: color-mix(in srgb, var(--surface) 60%, transparent); }
+.bulk-table tr:last-child td { border-bottom: none; }
+.bulk-all-good { margin: 0; color: #bff0c8; font-size: 0.92rem; }
+.bulk-progress {
+  position: relative; height: 26px; border-radius: 999px; overflow: hidden;
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.bulk-progress-bar { height: 100%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); transition: width 0.1s linear; }
+.bulk-progress-label {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 700; color: var(--text);
+}
+.bulk-submit { align-self: flex-start; cursor: pointer; border: none; }
+.bulk-submit:disabled { opacity: 0.55; cursor: not-allowed; }
+.bulk-summary {
+  padding: 18px 20px; border-radius: 14px;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.bulk-summary h3 { margin: 0 0 8px; }
+.bulk-summary ul { margin: 0 0 14px; padding-left: 18px; color: var(--muted); }
+.bulk-summary .cta-secondary { margin-top: 0; cursor: pointer; }
+.bulk-help { color: var(--muted); font-size: 0.86rem; }
+.bulk-help summary { cursor: pointer; }
