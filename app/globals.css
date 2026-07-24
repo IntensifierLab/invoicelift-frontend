@@ -606,4 +606,21 @@ a { color: inherit; text-decoration: none; }
 .repayment-connection-polling .repayment-connection-dot,
 .repayment-connection-reconnecting .repayment-connection-dot {
   background: #ff8a5c;
+.integration-banner {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  margin: 6px 0 18px;
+}
+
+.integration-banner-success {
+  background: color-mix(in srgb, #7fd1a8 16%, var(--surface));
+  border: 1px solid color-mix(in srgb, #7fd1a8 45%, transparent);
+  color: #a8e6c4;
+}
+
+.integration-banner-error {
+  background: color-mix(in srgb, #ff8a5c 16%, var(--surface));
+  border: 1px solid color-mix(in srgb, #ff8a5c 45%, transparent);
+  color: #ffb088;
 }
