@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
+import { ConnectWalletButton } from "@/components/connect-wallet-button";
+import { WalletProvider } from "@/components/wallet-provider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000"),
@@ -40,27 +42,32 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <header className="nav">
-          <div className="container nav-inner">
-            <Link href="/" className="brand brand-with-logo">
-              <Image
-                src="/icon.svg"
-                alt=""
-                width={38}
-                height={38}
-                className="nav-logo"
-                unoptimized
-              />
-              <span className="brand-text">InvoiceLift</span>
-            </Link>
-            <nav className="links">
-              {nav.map(([label, href]) => (
-                <Link key={href} href={href}>{label}</Link>
-              ))}
-            </nav>
-          </div>
-        </header>
-        <main className="container">{children}</main>
+        <WalletProvider>
+          <header className="nav">
+            <div className="container nav-inner">
+              <Link href="/" className="brand brand-with-logo">
+                <Image
+                  src="/icon.svg"
+                  alt=""
+                  width={38}
+                  height={38}
+                  className="nav-logo"
+                  unoptimized
+                />
+                <span className="brand-text">InvoiceLift</span>
+              </Link>
+              <div className="nav-right">
+                <nav className="links">
+                  {nav.map(([label, href]) => (
+                    <Link key={href} href={href}>{label}</Link>
+                  ))}
+                </nav>
+                <ConnectWalletButton />
+              </div>
+            </div>
+          </header>
+          <main className="container">{children}</main>
+        </WalletProvider>
       </body>
     </html>
   );
