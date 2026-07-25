@@ -606,6 +606,132 @@ a { color: inherit; text-decoration: none; }
 .repayment-connection-polling .repayment-connection-dot,
 .repayment-connection-reconnecting .repayment-connection-dot {
   background: #ff8a5c;
+.invoice-list {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.invoice-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.invoice-filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.invoice-filter-range {
+  display: flex;
+  gap: 8px;
+}
+
+.invoice-filters select,
+.invoice-filters input,
+.invoice-search {
+  background: var(--bg);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 8px 10px;
+  font-size: 0.86rem;
+  width: 100%;
+}
+
+.invoice-filters select:focus-visible,
+.invoice-filters input:focus-visible,
+.invoice-search:focus-visible,
+.invoice-pagination button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.invoice-search {
+  margin-bottom: 12px;
+}
+
+.invoice-result-count {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin: 0 0 10px;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.invoice-table th,
+.invoice-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid color-mix(in srgb, var(--muted) 20%, transparent);
+}
+
+.invoice-table th {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.invoice-empty-row {
+  text-align: center;
+  color: var(--muted);
+  padding: 24px 12px;
+}
+
+.invoice-status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.invoice-status-pending { background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--accent); }
+.invoice-status-financed { background: color-mix(in srgb, #7fd1a8 20%, transparent); color: #7fd1a8; }
+.invoice-status-repaid { background: color-mix(in srgb, #8ec9ff 20%, transparent); color: #8ec9ff; }
+.invoice-status-overdue { background: color-mix(in srgb, #ff8a5c 20%, transparent); color: #ffb088; }
+
+.invoice-pagination {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.invoice-pagination button {
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.invoice-pagination button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+@media (max-width: 720px) {
+  .invoice-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 .footer {
