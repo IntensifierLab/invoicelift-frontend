@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   ["SMEs", "/smes"],
   ["Invoices", "/invoices"],
   ["Liquidity", "/liquidity"],
+  ["Lenders", "/lender"],
   ["Risk", "/risk"],
   ["Roadmap", "/roadmap"],
   ["Docs", "/docs"],

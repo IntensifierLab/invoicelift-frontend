@@ -11,6 +11,7 @@ import {
 import { MetricTile } from "@/components/lender/metric-tile";
 import { PoolHealthChart } from "@/components/lender/pool-health-chart";
 import { SmeExposureTable } from "@/components/lender/sme-exposure-table";
+import { RouteGuard } from "@/components/route-guard";
 
 // Poll interval for the "real-time" pool metrics. There's no push channel
 // (websocket/SSE) from invoicelift-backend yet, so this is the pragmatic
@@ -45,6 +46,14 @@ function alertLabel(alert: SystemicAlert): string {
 }
 
 export default function LenderDashboardPage() {
+  return (
+    <RouteGuard allow={["lender", "admin"]}>
+      <LenderDashboardContent />
+    </RouteGuard>
+  );
+}
+
+function LenderDashboardContent() {
   const [pools, setPools] = useState<Pool[]>([]);
   const [buyerExposure, setBuyerExposure] = useState<BuyerExposure[]>([]);
   const [alerts, setAlerts] = useState<SystemicAlert[]>([]);
