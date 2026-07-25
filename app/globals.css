@@ -478,6 +478,8 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.78rem;
   color: var(--muted);
   word-break: break-all;
+}
+
 /* === financing wizard (issue #15) === */
 .wizard { margin-top: 18px; display: flex; flex-direction: column; gap: 20px; }
 .wizard-steps {
