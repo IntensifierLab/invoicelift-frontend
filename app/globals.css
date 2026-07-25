@@ -1153,6 +1153,11 @@ a { color: inherit; text-decoration: none; }
 .governance-action-medium {
   background: var(--surface);
 }
+/* repayment waterfall (issue #18) */
+
+.waterfall-filter-input {
+  padding: 9px 12px;
+}
 /* invoice registry status viewer (issue #17) */
 
 .registry-search-row {
@@ -1167,6 +1172,50 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid var(--ring);
   background: var(--surface);
   color: inherit;
+  font-size: 0.88rem;
+}
+
+.waterfall-chart {
+  padding: 8px 4px;
+  min-width: 260px;
+}
+
+.waterfall-bar {
+  display: flex;
+  height: 18px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--muted) 15%, transparent);
+}
+
+.waterfall-segment { height: 100%; }
+.waterfall-segment-principal { background: var(--accent); }
+.waterfall-segment-fee { background: #ff8a5c; }
+.waterfall-segment-reserve { background: #7fa8d1; }
+.waterfall-segment-yield { background: #7fd1a8; }
+
+.waterfall-legend {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.waterfall-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.waterfall-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
   font-size: 0.95rem;
 }
 

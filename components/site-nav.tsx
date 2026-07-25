@@ -12,6 +12,7 @@ const NAV_ITEMS = [
   ["Lenders", "/lender"],
   ["Risk", "/risk"],
   ["Systemic Risk", "/admin/systemic-risk"],
+  ["Waterfall", "/waterfall"],
   ["Roadmap", "/roadmap"],
   ["Docs", "/docs"],
 ] as const;
