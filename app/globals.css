@@ -104,6 +104,45 @@ a { color: inherit; text-decoration: none; }
   background: currentColor;
 }
 
+.repayment-connection {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  color: var(--muted);
+}
+
+.repayment-connection-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+
+.repayment-connection-live {
+  color: #7fd1a8;
+  border-color: color-mix(in srgb, #7fd1a8 45%, transparent);
+}
+.repayment-connection-live .repayment-connection-dot {
+  background: #7fd1a8;
+  box-shadow: 0 0 0 3px color-mix(in srgb, #7fd1a8 30%, transparent);
+}
+
+.repayment-connection-polling,
+.repayment-connection-reconnecting {
+  color: #ffb088;
+  border-color: color-mix(in srgb, #ff8a5c 45%, transparent);
+}
+.repayment-connection-polling .repayment-connection-dot,
+.repayment-connection-reconnecting .repayment-connection-dot {
+  background: #ff8a5c;
+}
+
 .wallet-menu {
   position: absolute;
   top: calc(100% + 8px);
