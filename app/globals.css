@@ -695,6 +695,8 @@ a { color: inherit; text-decoration: none; }
   .invoice-list {
     grid-template-columns: 1fr;
   }
+}
+
 .footer {
   margin-top: 48px;
   border-top: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
