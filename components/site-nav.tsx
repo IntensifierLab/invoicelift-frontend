@@ -6,6 +6,7 @@ import { useRole } from "@/lib/auth/use-role";
 
 const NAV_ITEMS = [
   ["SMEs", "/smes"],
+  ["Invoices", "/invoices"],
   ["Liquidity", "/liquidity"],
   ["Risk", "/risk"],
   ["Roadmap", "/roadmap"],
