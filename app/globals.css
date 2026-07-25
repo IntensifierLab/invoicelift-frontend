@@ -1074,3 +1074,69 @@ a { color: inherit; text-decoration: none; }
   color: var(--muted);
   font-size: 0.85rem;
 }
+
+/* invoice registry status viewer (issue #17) */
+
+.registry-search-row {
+  margin: 12px 0 20px;
+}
+
+.registry-search-input {
+  width: 100%;
+  max-width: 480px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--ring);
+  background: var(--surface);
+  color: inherit;
+  font-size: 0.95rem;
+}
+
+.registry-results {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.registry-record-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.registry-record-header h3 { margin: 0; }
+
+.registry-stepper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 14px 0;
+  padding: 0;
+}
+
+.registry-step {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--ring);
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.registry-step-done {
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  color: color-mix(in srgb, var(--accent) 85%, white);
+}
+
+.registry-step-current {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-color: transparent;
+  color: #061018;
+  font-weight: 700;
+}
+
+.registry-history {
+  margin: 10px 0 0;
+  font-size: 0.85rem;
+}
