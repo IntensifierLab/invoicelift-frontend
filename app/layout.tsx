@@ -4,6 +4,7 @@ import Link from "next/link";
 import { OfflineSupport } from "@/components/offline-support";
 import "./globals.css";
 import { ConnectWalletButton } from "@/components/connect-wallet-button";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
 import { WalletProvider } from "@/components/wallet-provider";
 
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </header>
           <main className="container">{children}</main>
+          <SiteFooter />
         </WalletProvider>
       </body>
     </html>

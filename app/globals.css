@@ -695,4 +695,60 @@ a { color: inherit; text-decoration: none; }
   .invoice-list {
     grid-template-columns: 1fr;
   }
+.footer {
+  margin-top: 48px;
+  border-top: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 22px 20px;
+}
+
+.footer-copy {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.integration-banner {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  margin: 6px 0 18px;
+}
+
+.integration-banner-success {
+  background: color-mix(in srgb, #7fd1a8 16%, var(--surface));
+  border: 1px solid color-mix(in srgb, #7fd1a8 45%, transparent);
+  color: #a8e6c4;
+}
+
+.integration-banner-error {
+  background: color-mix(in srgb, #ff8a5c 16%, var(--surface));
+  border: 1px solid color-mix(in srgb, #ff8a5c 45%, transparent);
+  color: #ffb088;
 }
