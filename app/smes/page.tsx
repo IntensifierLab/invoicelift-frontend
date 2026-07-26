@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 
-import { RouteGuard } from "@/components/route-guard";
-
 interface LogMessage {
   time: string;
   text: string;
   type: "info" | "success" | "warn" | "error";
 }
+
+import { RouteGuard } from "@/components/route-guard";
 
 export default function Page() {
   const [walletConnected, setWalletConnected] = useState(false);
