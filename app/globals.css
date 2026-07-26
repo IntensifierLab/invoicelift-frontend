@@ -55,6 +55,144 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.92rem;
 }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.wallet-widget {
+  position: relative;
+}
+
+.wallet-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.wallet-pill:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 65%, transparent);
+}
+
+.wallet-pill:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.wallet-pill-warning {
+  border-color: color-mix(in srgb, #ff8a5c 55%, transparent);
+  background: color-mix(in srgb, #ff8a5c 14%, transparent);
+  color: #ffb088;
+}
+
+.wallet-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.repayment-connection {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  color: var(--muted);
+}
+
+.repayment-connection-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+
+.repayment-connection-live {
+  color: #7fd1a8;
+  border-color: color-mix(in srgb, #7fd1a8 45%, transparent);
+}
+.repayment-connection-live .repayment-connection-dot {
+  background: #7fd1a8;
+  box-shadow: 0 0 0 3px color-mix(in srgb, #7fd1a8 30%, transparent);
+}
+
+.repayment-connection-polling,
+.repayment-connection-reconnecting {
+  color: #ffb088;
+  border-color: color-mix(in srgb, #ff8a5c 45%, transparent);
+}
+.repayment-connection-polling .repayment-connection-dot,
+.repayment-connection-reconnecting .repayment-connection-dot {
+  background: #ff8a5c;
+}
+
+.wallet-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent);
+  border-radius: 12px;
+  padding: 8px;
+  z-index: 30;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.wallet-menu-warning {
+  margin: 4px 8px 8px;
+  color: #ffb088;
+  font-size: 0.8rem;
+}
+
+.wallet-menu-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+.wallet-menu-item:hover {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.wallet-error {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  max-width: 260px;
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: color-mix(in srgb, #ff8a5c 16%, var(--surface));
+  border: 1px solid color-mix(in srgb, #ff8a5c 45%, transparent);
+  color: #ffb088;
+  font-size: 0.78rem;
+  z-index: 30;
+}
+
 .hero {
   padding: 56px 0 28px;
 }
@@ -91,6 +229,19 @@ a { color: inherit; text-decoration: none; }
 }
 
 .section h2 { margin-bottom: 10px; }
+
+.forbidden {
+  border: 1px solid color-mix(in srgb, #ff8a5c 30%, transparent);
+  border-radius: 14px;
+  background: color-mix(in srgb, #ff8a5c 8%, var(--surface));
+  padding: 24px;
+}
+
+.forbidden .tag {
+  background: color-mix(in srgb, #ff8a5c 18%, transparent);
+  border-color: color-mix(in srgb, #ff8a5c 45%, transparent);
+  color: #ffb088;
+}
 
 .list {
   padding-left: 18px;
@@ -289,4 +440,830 @@ a { color: inherit; text-decoration: none; }
   border-radius: 14px;
   background: color-mix(in srgb, var(--surface) 65%, transparent);
   letter-spacing: 0.04em;
+}
+
+/* === transaction confirmation modal (Freighter signing flow) === */
+.tx-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 6, 2, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 20px;
+}
+
+.tx-modal {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+.tx-modal h3 {
+  margin: 0 0 14px;
+}
+
+.tx-modal-fields {
+  margin: 0 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tx-modal-field {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.88rem;
+}
+
+.tx-modal-field dt {
+  color: var(--muted);
+}
+
+.tx-modal-field dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+  word-break: break-all;
+}
+
+.tx-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.tx-modal-status {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.tx-modal-success {
+  color: #7ee0a8;
+}
+
+.tx-modal-error {
+  color: #ffb088;
+}
+
+.tx-modal-hash {
+  font-size: 0.78rem;
+  color: var(--muted);
+  word-break: break-all;
+}
+
+/* === financing wizard (issue #15) === */
+.wizard { margin-top: 18px; display: flex; flex-direction: column; gap: 20px; }
+.wizard-steps {
+  display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0;
+}
+.wizard-step {
+  display: flex; align-items: center; gap: 8px; flex: 1 1 160px;
+  padding: 10px 12px; border-radius: 10px; font-size: 0.85rem; color: var(--muted);
+  background: color-mix(in srgb, var(--surface) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 16%, transparent);
+}
+.wizard-step.is-active { color: var(--text); border-color: var(--ring); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.wizard-step.is-done { color: var(--text); }
+.wizard-step-index {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 50%; font-weight: 700; font-size: 0.8rem; flex-shrink: 0;
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  border: 1px solid var(--ring);
+}
+.wizard-step.is-active .wizard-step-index,
+.wizard-step.is-done .wizard-step-index { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #1a1005; }
+.wizard-panel {
+  padding: 20px; border-radius: 14px;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.wizard-fieldset { border: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.wizard-legend { font-size: 1.05rem; font-weight: 650; padding: 0; margin-bottom: 4px; }
+.wizard-field { display: flex; flex-direction: column; gap: 6px; }
+.wizard-field-label { font-size: 0.86rem; color: var(--muted); }
+.wizard-input {
+  width: 100%; padding: 10px 12px; border-radius: 10px; font-size: 0.95rem;
+  color: var(--text); background: color-mix(in srgb, var(--bg) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+}
+.wizard-input:focus { outline: 2px solid var(--ring); outline-offset: 1px; }
+.wizard-error { color: #ffb4a4; font-size: 0.82rem; }
+.wizard-terms { display: flex; flex-direction: column; gap: 8px; margin: 0; }
+.wizard-terms > div { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px solid color-mix(in srgb, var(--muted) 18%, transparent); }
+.wizard-terms dt { color: var(--muted); margin: 0; }
+.wizard-terms dd { margin: 0; font-weight: 600; }
+.wizard-terms-net { border-bottom: none !important; font-size: 1.05rem; }
+.wizard-terms-net dd { color: var(--accent); }
+.wizard-check { display: flex; align-items: center; gap: 10px; font-size: 0.92rem; margin-top: 8px; cursor: pointer; }
+.wizard-review, .wizard-wallet { color: var(--muted); font-size: 0.95rem; margin: 0; }
+.wizard-btn { margin-top: 0; cursor: pointer; border: none; }
+.wizard-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.wizard-nav { display: flex; justify-content: space-between; gap: 12px; }
+.wizard-back { background: none; border: none; color: var(--muted); text-decoration: underline; cursor: pointer; font-size: 0.92rem; }
+.wizard-back:disabled { opacity: 0.4; cursor: not-allowed; text-decoration: none; }
+.wizard-done {
+  margin-top: 18px; padding: 22px; border-radius: 14px;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  border: 1px solid color-mix(in srgb, #4ade80 40%, transparent);
+}
+.wizard-done h3 { margin: 0 0 8px; }
+.wizard-done p { margin: 0; color: var(--muted); }
+/* === bulk CSV upload (issue #28) === */
+.bulk { margin-top: 18px; display: flex; flex-direction: column; gap: 16px; }
+.bulk-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.bulk-actions .cta, .bulk-actions .cta-secondary { margin-top: 0; cursor: pointer; }
+.bulk-file-label { position: relative; overflow: hidden; cursor: pointer; }
+.bulk-file-input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.bulk-reset {
+  background: none; border: none; color: var(--muted);
+  text-decoration: underline; cursor: pointer; font-size: 0.9rem;
+}
+.bulk-filename { margin: 0; color: var(--muted); font-size: 0.9rem; }
+.bulk-error-banner {
+  margin: 0; padding: 12px 14px; border-radius: 10px;
+  background: color-mix(in srgb, #ff6b6b 16%, transparent);
+  border: 1px solid color-mix(in srgb, #ff6b6b 45%, transparent);
+  color: #ffd9d0; font-size: 0.9rem;
+}
+.bulk-stats { display: flex; flex-wrap: wrap; gap: 10px; }
+.bulk-chip {
+  padding: 6px 12px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid var(--ring);
+}
+.bulk-chip-ok { color: #bff0c8; border-color: color-mix(in srgb, #4ade80 45%, transparent); background: color-mix(in srgb, #4ade80 14%, transparent); }
+.bulk-chip-bad { color: #ffd9d0; border-color: color-mix(in srgb, #ff6b6b 45%, transparent); background: color-mix(in srgb, #ff6b6b 14%, transparent); }
+.bulk-table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); }
+.bulk-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.bulk-table th, .bulk-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid color-mix(in srgb, var(--muted) 22%, transparent); }
+.bulk-table th { color: var(--muted); font-weight: 600; background: color-mix(in srgb, var(--surface) 60%, transparent); }
+.bulk-table tr:last-child td { border-bottom: none; }
+.bulk-all-good { margin: 0; color: #bff0c8; font-size: 0.92rem; }
+.bulk-progress {
+  position: relative; height: 26px; border-radius: 999px; overflow: hidden;
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.bulk-progress-bar { height: 100%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); transition: width 0.1s linear; }
+.bulk-progress-label {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 700; color: var(--text);
+}
+.bulk-submit { align-self: flex-start; cursor: pointer; border: none; }
+.bulk-submit:disabled { opacity: 0.55; cursor: not-allowed; }
+.bulk-summary {
+  padding: 18px 20px; border-radius: 14px;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.bulk-summary h3 { margin: 0 0 8px; }
+.bulk-summary ul { margin: 0 0 14px; padding-left: 18px; color: var(--muted); }
+.bulk-summary .cta-secondary { margin-top: 0; cursor: pointer; }
+.bulk-help { color: var(--muted); font-size: 0.86rem; }
+.bulk-help summary { cursor: pointer; }
+/* === empty states (issue #10) === */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 40px 20px 48px;
+  border: 1px dashed color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--surface) 45%, transparent);
+}
+.empty-state-art {
+  width: clamp(120px, 22vw, 148px);
+  height: auto;
+  margin-bottom: 6px;
+}
+.empty-state-heading {
+  margin: 0;
+  font-size: 1.12rem;
+  font-weight: 650;
+}
+.empty-state-copy {
+  margin: 0;
+  max-width: 420px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.empty-state-cta {
+  margin-top: 8px;
+}
+
+/* === offline banner (issue #31) === */
+.offline-banner {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-align: center;
+  color: #1a1005;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+}
+.offline-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #7a2e00;
+  box-shadow: 0 0 0 3px color-mix(in srgb, #7a2e00 30%, transparent);
+}
+
+.invoice-list {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.invoice-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.invoice-filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.invoice-filter-range {
+  display: flex;
+  gap: 8px;
+}
+
+.invoice-filters select,
+.invoice-filters input,
+.invoice-search {
+  background: var(--bg);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 8px 10px;
+  font-size: 0.86rem;
+  width: 100%;
+}
+
+.invoice-filters select:focus-visible,
+.invoice-filters input:focus-visible,
+.invoice-search:focus-visible,
+.invoice-pagination button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.invoice-search {
+  margin-bottom: 12px;
+}
+
+.invoice-result-count {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin: 0 0 10px;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.invoice-table th,
+.invoice-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid color-mix(in srgb, var(--muted) 20%, transparent);
+}
+
+.invoice-table th {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.invoice-empty-row {
+  text-align: center;
+  color: var(--muted);
+  padding: 24px 12px;
+}
+
+.invoice-status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.invoice-status-pending { background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--accent); }
+.invoice-status-financed { background: color-mix(in srgb, #7fd1a8 20%, transparent); color: #7fd1a8; }
+.invoice-status-repaid { background: color-mix(in srgb, #8ec9ff 20%, transparent); color: #8ec9ff; }
+.invoice-status-overdue { background: color-mix(in srgb, #ff8a5c 20%, transparent); color: #ffb088; }
+
+.invoice-pagination {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.invoice-pagination button {
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.invoice-pagination button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+@media (max-width: 720px) {
+  .invoice-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer {
+  margin-top: 48px;
+  border-top: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 22px 20px;
+}
+
+.footer-copy {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.integration-banner {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  margin: 6px 0 18px;
+}
+
+.integration-banner-success {
+  background: color-mix(in srgb, #7fd1a8 16%, var(--surface));
+  border: 1px solid color-mix(in srgb, #7fd1a8 45%, transparent);
+  color: #a8e6c4;
+}
+
+.integration-banner-error {
+  background: color-mix(in srgb, #ff8a5c 16%, var(--surface));
+  border: 1px solid color-mix(in srgb, #ff8a5c 45%, transparent);
+  color: #ffb088;
+}
+
+/* === lender underwriting dashboard === */
+.lender-header-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.lender-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lender-updated-at {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.lender-empty {
+  color: var(--muted);
+  padding: 18px 0;
+}
+
+.lender-errors {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: color-mix(in srgb, #ff8a5c 14%, transparent);
+  border: 1px solid color-mix(in srgb, #ff8a5c 45%, transparent);
+}
+
+.lender-errors p {
+  margin: 0;
+  color: #ffb088;
+  font-size: 0.85rem;
+}
+
+.lender-errors p + p {
+  margin-top: 4px;
+}
+
+.lender-metrics {
+  padding-top: 18px;
+}
+
+.metric-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 88%, var(--bg)) 0%, var(--surface) 100%);
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.metric-tile-warning {
+  border-color: color-mix(in srgb, #ff8a5c 55%, transparent);
+}
+
+.metric-tile-label {
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metric-tile-value {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.metric-tile-warning .metric-tile-value {
+  color: #ffb088;
+}
+
+.metric-tile-sub {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.pool-health-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pool-health-row {
+  display: grid;
+  grid-template-columns: minmax(160px, 220px) 1fr 56px;
+  align-items: center;
+  gap: 12px;
+}
+
+.pool-health-label {
+  display: flex;
+  flex-direction: column;
+}
+
+.pool-health-id {
+  font-weight: 600;
+}
+
+.pool-health-amounts {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.pool-health-bar-track {
+  height: 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  overflow: hidden;
+}
+
+.pool-health-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
+.pool-health-bar-ok { background: #7ee0a8; }
+.pool-health-bar-warn { background: var(--accent); }
+.pool-health-bar-critical { background: #ff8a5c; }
+
+.pool-health-pct {
+  text-align: right;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.lender-alerts-list li {
+  margin-bottom: 6px;
+}
+
+.lender-table-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.lender-export-btn {
+  padding: 8px 14px;
+  font-size: 0.85rem;
+}
+
+.lender-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.lender-table th,
+.lender-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid color-mix(in srgb, var(--muted) 25%, transparent);
+}
+
+.lender-table th {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.lender-drilldown-toggle {
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.lender-drilldown-toggle:hover {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.lender-drilldown-row td {
+  background: color-mix(in srgb, var(--surface) 55%, transparent);
+}
+
+.lender-drilldown-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lender-drilldown-list li {
+  display: flex;
+  justify-content: space-between;
+  max-width: 320px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* admin systemic risk dashboard (issue #36) */
+
+.correlation-matrix-wrap {
+  overflow-x: auto;
+}
+
+.correlation-matrix {
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.correlation-matrix th, .correlation-matrix td {
+  padding: 8px 12px;
+  text-align: center;
+}
+
+.correlation-matrix thead th, .correlation-matrix tbody th {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.correlation-cell {
+  border-radius: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.correlation-cell-diagonal {
+  color: var(--muted);
+  background: color-mix(in srgb, var(--muted) 12%, transparent);
+}
+
+.correlation-cell-low {
+  background: color-mix(in srgb, #7fd1a8 12%, transparent);
+  color: #7fd1a8;
+}
+
+.correlation-cell-medium {
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  color: var(--accent);
+}
+
+.correlation-cell-high {
+  background: color-mix(in srgb, #ff8a5c 22%, transparent);
+  color: #ffb088;
+  font-weight: 700;
+}
+
+.governance-actions-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.governance-action {
+  border-radius: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--ring);
+}
+
+.governance-action p { margin: 0; color: var(--muted); }
+
+.governance-action-high {
+  border-color: color-mix(in srgb, #ff8a5c 45%, transparent);
+  background: color-mix(in srgb, #ff8a5c 8%, var(--surface));
+}
+
+.governance-action-high .tag {
+  background: color-mix(in srgb, #ff8a5c 18%, transparent);
+  border-color: color-mix(in srgb, #ff8a5c 45%, transparent);
+  color: #ffb088;
+}
+
+.governance-action-medium {
+  background: var(--surface);
+}
+/* repayment waterfall (issue #18) */
+
+.waterfall-filter-input {
+  padding: 9px 12px;
+}
+/* invoice registry status viewer (issue #17) */
+
+.registry-search-row {
+  margin: 12px 0 20px;
+}
+
+.registry-search-input {
+  width: 100%;
+  max-width: 480px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--ring);
+  background: var(--surface);
+  color: inherit;
+  font-size: 0.88rem;
+}
+
+.waterfall-chart {
+  padding: 8px 4px;
+  min-width: 260px;
+}
+
+.waterfall-bar {
+  display: flex;
+  height: 18px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--muted) 15%, transparent);
+}
+
+.waterfall-segment { height: 100%; }
+.waterfall-segment-principal { background: var(--accent); }
+.waterfall-segment-fee { background: #ff8a5c; }
+.waterfall-segment-reserve { background: #7fa8d1; }
+.waterfall-segment-yield { background: #7fd1a8; }
+
+.waterfall-legend {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.waterfall-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.waterfall-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  font-size: 0.95rem;
+}
+
+.registry-results {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.registry-record-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.registry-record-header h3 { margin: 0; }
+
+.registry-stepper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 14px 0;
+  padding: 0;
+}
+
+.registry-step {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--ring);
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.registry-step-done {
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  color: color-mix(in srgb, var(--accent) 85%, white);
+}
+
+.registry-step-current {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-color: transparent;
+  color: #061018;
+  font-weight: 700;
+}
+
+.registry-history {
+  margin: 10px 0 0;
+  font-size: 0.85rem;
 }

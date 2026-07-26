@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+
+import { RouteGuard } from "@/components/route-guard";
 
 interface LogMessage {
   time: string;
@@ -21,7 +23,6 @@ export default function Page() {
   const [zkState, setZkState] = useState<"idle" | "proving" | "proved">("idle");
   const [zkProgress, setZkProgress] = useState(0);
   const [logs, setLogs] = useState<LogMessage[]>([]);
-  const [proof, setProof] = useState<string | null>(null);
   
   // Scoring Service / Attestation State
   const [attestationState, setAttestationState] = useState<"idle" | "verifying" | "attested">("idle");
@@ -47,7 +48,6 @@ export default function Page() {
       setZkState("idle");
       setZkProgress(0);
       setLogs([]);
-      setProof(null);
       setAttestationState("idle");
       setCreditScore(null);
       setAttestationTx(null);
@@ -67,7 +67,7 @@ export default function Page() {
     
     addLog("Initializing WebAssembly SnarkJS runtime...", "info");
     
-    const steps = [
+    const steps: { progress: number; log: string; type: LogMessage["type"] }[] = [
       { progress: 15, log: "Loading SME creditworthiness circuit (.wasm / R1CS constraints)...", type: "info" },
       { progress: 35, log: "Binding private inputs: [revenue = $" + revenue.toLocaleString() + ", debt = $" + debt.toLocaleString() + ", assets = $" + assets.toLocaleString() + "]", type: "info" },
       { progress: 55, log: "Generating witness locally (no data leaves browser)...", type: "info" },
@@ -79,11 +79,9 @@ export default function Page() {
     steps.forEach((step, idx) => {
       setTimeout(() => {
         setZkProgress(step.progress);
-        addLog(step.log, step.type as any);
+        addLog(step.log, step.type);
         if (step.progress === 100) {
           setZkState("proved");
-          // Generate a fake proof hash
-          setProof("proof_" + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
         }
       }, (idx + 1) * 800);
     });
@@ -133,6 +131,7 @@ export default function Page() {
   };
 
   return (
+    <RouteGuard allow={["sme", "admin"]}>
     <section className="section">
       <span className="tag">ZK Privacy Framework</span>
       
@@ -586,25 +585,7 @@ export default function Page() {
         }
       `}</style>
     </section>
+    </RouteGuard>
+
   );
 }
-
-// Contribution check by karen-s at 2025-01-09T02:37:14
-
-// Contribution check by alexdev99 at 2025-04-15T08:08:16
-
-// Contribution check by lisap at 2025-07-20T13:39:18
-
-// Contribution check by karen-s at 2025-10-24T19:10:20
-
-// Contribution check by alexdev99 at 2026-01-29T00:41:22
-
-// Contribution check by lisap at 2026-05-05T06:12:24
-
-// Contribution by WIAG1949 — 2025-01-20
-
-// Contribution by Williams-1604 — 2025-06-21
-
-// Contribution by CelestinaBeing — 2025-11-20
-
-// Contribution by WIAG1949 — 2026-04-22
