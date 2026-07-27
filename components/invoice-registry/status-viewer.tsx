@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import {
@@ -61,6 +62,12 @@ function RegistryRecordCard({ record }: { record: InvoiceRegistryRecord }) {
           </li>
         ))}
       </ul>
+
+      <p style={{ marginTop: 12 }}>
+        <Link href={`/registry/${encodeURIComponent(record.invoiceId)}/nft`} className="cta-secondary">
+          View NFT &rarr;
+        </Link>
+      </p>
     </div>
   );
 }

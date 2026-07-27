@@ -9,6 +9,7 @@ export const CONTRACT_IDS = {
   poolManager: process.env.NEXT_PUBLIC_POOL_MANAGER_CONTRACT_ID,
   invoiceRegistry: process.env.NEXT_PUBLIC_INVOICE_REGISTRY_CONTRACT_ID,
   repaymentWaterfall: process.env.NEXT_PUBLIC_REPAYMENT_WATERFALL_CONTRACT_ID,
+  invoiceNft: process.env.NEXT_PUBLIC_INVOICE_NFT_CONTRACT_ID,
 } as const;
 
 export type ContractName = keyof typeof CONTRACT_IDS;
