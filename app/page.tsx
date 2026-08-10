@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand-logo";
 import { ExpectedPages } from "@/components/expected-pages";
+import { Tooltip } from "@/components/tooltip";
 
 export default function HomePage() {
   return (
@@ -11,10 +14,13 @@ export default function HomePage() {
           <BrandLogo className="landing-logo" aria-label="InvoiceLift logo" />
           <span className="tag">SME liquidity · Invoice finance · Stellar</span>
           <h1 className="hero-headline">Turn receivables into runway.</h1>
-          <p
-            className="landing-lead"
-            dangerouslySetInnerHTML={{ __html: "InvoiceLift puts <strong>verified invoices and repayment waterfalls</strong> on Soroban\u2014so SMEs unlock working capital and lenders see precedence rules they can trust." }}
-          />
+          <p className="landing-lead">
+                      InvoiceLift puts <strong>verified invoices and{" "}
+                      <Tooltip content='A "waterfall" is the priority order dictating how each buyer repayment is split — principal first, then protocol fee, reserve, and lender yield.'>
+                        repayment waterfalls
+                      </Tooltip></strong>{" "}
+                      on Soroban—so SMEs unlock working capital and lenders see precedence rules they can trust.
+                    </p>
           <div className="landing-cta-row">
             <Link href="/roadmap" className="cta">Credit roadmap</Link>
             <Link href="/smes" className="cta-secondary">For SMEs</Link>

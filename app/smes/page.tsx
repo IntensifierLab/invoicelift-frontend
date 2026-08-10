@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Tooltip } from "@/components/tooltip";
 
 interface LogMessage {
   time: string;
@@ -174,7 +175,12 @@ export default function Page() {
           <p className="card-desc">Enter your financial figures. This data remains in local state to compile the proof.</p>
           
           <div className="form-group">
-            <label>Annual Revenue (USD)</label>
+            <label>
+              <Tooltip content="Total income your business generates from selling goods or services in a single year — the starting point for working-capital assessment.">
+                Annual Revenue
+              </Tooltip>{" "}
+              (USD)
+            </label>
             <input 
               type="number" 
               value={revenue} 
@@ -183,7 +189,12 @@ export default function Page() {
             />
           </div>
           <div className="form-group">
-            <label>Outstanding Debt (USD)</label>
+            <label>
+              <Tooltip content="Money your business owes to lenders or suppliers that must be repaid. Alongside revenue, it drives your debt-to-asset ratio.">
+                Outstanding Debt
+              </Tooltip>{" "}
+              (USD)
+            </label>
             <input 
               type="number" 
               value={debt} 
@@ -192,7 +203,12 @@ export default function Page() {
             />
           </div>
           <div className="form-group">
-            <label>Liquid Assets (USD)</label>
+            <label>
+              <Tooltip content="Cash and assets that can be quickly converted into cash without loss of value — the buffer pools use to assess collateral coverage.">
+                Liquid Assets
+              </Tooltip>{" "}
+              (USD)
+            </label>
             <input 
               type="number" 
               value={assets} 
@@ -284,7 +300,12 @@ export default function Page() {
               disabled={attestationState !== "attested"}
             >
               <option value="SME Liquidity Pool Alpha">Alpha Pool (Min Tier: B+)</option>
-              <option value="Premium Yield Pool Beta">Beta Pool (Min Tier: A)</option>
+              <option value="Premium Yield Pool Beta">
+                <Tooltip content="A pool that targets higher returns by financing invoices with shorter durations and stricter credit criteria. Higher yield, lower risk tolerance.">
+                  Premium Yield Pool
+                </Tooltip>{" "}
+                Beta (Min Tier: A)
+              </option>
             </select>
           </div>
 
