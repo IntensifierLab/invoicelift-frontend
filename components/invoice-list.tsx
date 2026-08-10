@@ -7,6 +7,7 @@ import {
   queryInvoices,
   uniqueBuyers,
 } from "@/lib/invoices/mock-data";
+import { CopyButton } from "@/components/copy-button";
 
 const PAGE_SIZE = 10;
 const STATUSES: InvoiceStatus[] = ["pending", "financed", "repaid", "overdue"];
@@ -169,7 +170,10 @@ export function InvoiceList() {
           <tbody>
             {result.rows.map((inv) => (
               <tr key={inv.id}>
-                <td>{inv.id}</td>
+                <td>
+                  {inv.id}
+                  <CopyButton text={inv.id} label={`Copy invoice ID ${inv.id}`} />
+                </td>
                 <td>{inv.smeName}</td>
                 <td>{inv.buyer}</td>
                 <td>

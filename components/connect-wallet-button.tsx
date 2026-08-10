@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useWallet } from "@/components/wallet-provider";
+import { CopyButton } from "@/components/copy-button";
 
 function truncate(address: string): string {
   return `${address.slice(0, 4)}…${address.slice(-4)}`;
@@ -24,6 +25,9 @@ export function ConnectWalletButton() {
           <span className="wallet-dot" aria-hidden />
           {address ? truncate(address) : "Connected"}
         </button>
+        {address && (
+          <CopyButton text={address} label="Copy wallet address" />
+        )}
         {menuOpen && (
           <div className="wallet-menu" role="menu">
             {status === "wrong-network" && (
