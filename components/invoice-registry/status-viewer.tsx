@@ -1,5 +1,6 @@
 "use client";
 
+import { StatusBadge } from "@/components/status-badge";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
@@ -47,6 +48,9 @@ function RegistryRecordCard({ record }: { record: InvoiceRegistryRecord }) {
         <h3>{record.invoiceId}</h3>
         <span className="tag">{formatCurrency(record.amount)}</span>
       </div>
+      <p style={{ marginTop: 8 }}>
+        <StatusBadge status={record.currentState} />
+      </p>
       <p style={{ color: "var(--muted)" }}>
         {record.smeName} &middot; buyer <span title={record.buyerAddress}>{truncate(record.buyerAddress)}</span>
       </p>

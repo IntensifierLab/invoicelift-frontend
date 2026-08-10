@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
+import { StatusBadge } from "@/components/status-badge";
 import {
   type InvoiceStatus,
   queryInvoices,
@@ -176,9 +177,7 @@ export function InvoiceList() {
                   {inv.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })} {inv.currency}
                 </td>
                 <td>
-                  <span className={`invoice-status invoice-status-${inv.status}`}>
-                    {STATUS_LABELS[inv.status]}
-                  </span>
+                  <StatusBadge status={inv.status} />
                 </td>
                 <td>{inv.dueDate}</td>
               </tr>
