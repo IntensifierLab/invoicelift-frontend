@@ -7,6 +7,7 @@ import { ConnectWalletButton } from "@/components/connect-wallet-button";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
 import { WalletProvider } from "@/components/wallet-provider";
+import { Breadcrumb } from "@/components/breadcrumb";
 
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000"),
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </div>
           </header>
+          <Breadcrumb />
           <main className="container">{children}</main>
           <SiteFooter />
         </WalletProvider>
