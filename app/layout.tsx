@@ -4,6 +4,7 @@ import Link from "next/link";
 import { OfflineSupport } from "@/components/offline-support";
 import "./globals.css";
 import { ConnectWalletButton } from "@/components/connect-wallet-button";
+import { NotificationCentre } from "@/components/notification-centre";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
 import { WalletProvider } from "@/components/wallet-provider";
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </Link>
               <div className="nav-right">
                 <SiteNav />
+                <NotificationCentre />
                 <ConnectWalletButton />
               </div>
             </div>
