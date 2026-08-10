@@ -6,6 +6,7 @@ import "./globals.css";
 import { ConnectWalletButton } from "@/components/connect-wallet-button";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { WalletProvider } from "@/components/wallet-provider";
 
 export const metadata: Metadata = {
@@ -36,6 +37,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        {/* No-flash theme init: apply the stored/OS theme before first paint. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("invoicelift-theme");var d=t==="light"||t==="dark"?t:(window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.setAttribute("data-theme",d);}catch(e){document.documentElement.setAttribute("data-theme","dark");}})();`,
+          }}
+        />
+      </head>
       <body>
         <OfflineSupport />
         <WalletProvider>
@@ -54,6 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </Link>
               <div className="nav-right">
                 <SiteNav />
+                <ThemeToggle />
                 <ConnectWalletButton />
               </div>
             </div>
