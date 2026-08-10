@@ -1,6 +1,18 @@
+"use client";
+
 import { RepaymentStatus } from "@/components/repayment-status";
-import { RepaymentWsProvider } from "@/components/repayment-ws-provider";
+import { RepaymentWsProvider, useRepayments } from "@/components/repayment-ws-provider";
 import { RouteGuard } from "@/components/route-guard";
+import { LiquiditySkeleton } from "@/components/liquidity-skeleton";
+
+/** Renders the live positions grid, or a skeleton while the transport connects. */
+function LiquidityContent() {
+  const { connectionState } = useRepayments();
+  if (connectionState === "connecting") {
+    return <LiquiditySkeleton />;
+  }
+  return <RepaymentStatus />;
+}
 
 export default function Page() {
   return (
@@ -13,7 +25,7 @@ export default function Page() {
           connection drops, this falls back to polling automatically.
         </p>
         <RepaymentWsProvider>
-          <RepaymentStatus />
+          <LiquidityContent />
         </RepaymentWsProvider>
       </section>
     </RouteGuard>

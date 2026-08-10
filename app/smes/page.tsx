@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useEffect } from "react";
 
 interface LogMessage {
   time: string;
@@ -9,10 +10,17 @@ interface LogMessage {
 }
 
 import { RouteGuard } from "@/components/route-guard";
+import { Skeleton, SkeletonBlock } from "@/components/ui/skeleton";
 
 export default function Page() {
   const [walletConnected, setWalletConnected] = useState(false);
   const [walletAddress, setWalletAddress] = useState("");
+  // One-frame hydration guard so route transitions don't flash unstyled
+  // content before the client-side form mounts.
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
   
   // SME Financial Data (held purely client-side)
   const [revenue, setRevenue] = useState(450000);
@@ -133,6 +141,25 @@ export default function Page() {
   return (
     <RouteGuard allow={["sme", "admin"]}>
     <section className="section">
+      {!hydrated ? (
+        <>
+          <span className="tag">ZK Privacy Framework</span>
+          <div className="sme-header">
+            <Skeleton width={240} height={24} style={{ marginBottom: 8 }} />
+            <Skeleton width="60%" height={14} />
+          </div>
+          <div className="dashboard-grid">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div className="skeleton-card" key={i} style={{ minHeight: 280 }}>
+                <Skeleton width={80} height={12} />
+                <Skeleton width="85%" height={18} />
+                <SkeletonBlock lines={2} />
+              </div>
+            ))}
+          </div>
+        </>
+      ) : (
+      <>
       <span className="tag">ZK Privacy Framework</span>
       
       <div className="sme-header">
@@ -584,6 +611,8 @@ export default function Page() {
           color: #f87171;
         }
       `}</style>
+      </>
+      )}
     </section>
     </RouteGuard>
 

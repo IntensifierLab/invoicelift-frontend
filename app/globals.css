@@ -1294,3 +1294,58 @@ a { color: inherit; text-decoration: none; }
 .nft-financing-list li:last-child {
   border-bottom: none;
 }
+
+/* === skeleton / shimmer placeholders === */
+@keyframes skeleton-shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton {
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--surface) 100%, transparent) 25%,
+    color-mix(in srgb, var(--accent) 12%, transparent) 37%,
+    color-mix(in srgb, var(--surface) 100%, transparent) 63%
+  );
+  background-size: 800px 100%;
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+  vertical-align: middle;
+  line-height: 1;
+  min-width: 16px;
+}
+
+.skeleton-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Card skeleton — matches .card dimensions */
+.skeleton-card {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--surface) 88%, var(--bg)) 0%,
+    var(--surface) 100%
+  );
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent);
+  border-radius: 14px;
+  padding: 18px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Metric tile skeleton — matches the lender dashboard metric tiles */
+.skeleton-metric-tile {
+  background: linear-gradient(180deg, var(--surface) 0%, color-mix(in srgb, var(--surface) 92%, var(--bg)) 100%);
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+  border-radius: 12px;
+  padding: 20px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

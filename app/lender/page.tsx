@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { LenderDashboardSkeleton } from "@/components/lender/lender-dashboard-skeleton";
 import {
   fetchLenderDashboardData,
   type BuyerExposure,
@@ -115,8 +116,8 @@ function LenderDashboardContent() {
       )}
 
       {loading && pools.length === 0 && errors.length === 0 ? (
-        <p className="lender-empty">Loading portfolio…</p>
-      ) : (
+              <LenderDashboardSkeleton />
+            ) : (
         <>
           <div className="grid lender-metrics">
             <MetricTile label="Total value locked" value={formatCurrency(tvl)} sub={`${pools.length} pool${pools.length === 1 ? "" : "s"}`} />
