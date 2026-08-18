@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { BackToTop } from "@/components/back-to-top";
 import { OfflineSupport } from "@/components/offline-support";
 import "./globals.css";
 import { ConnectWalletButton } from "@/components/connect-wallet-button";
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </header>
           <main className="container">{children}</main>
           <SiteFooter />
+          <BackToTop />
         </WalletProvider>
       </body>
     </html>
