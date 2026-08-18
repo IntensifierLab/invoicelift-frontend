@@ -110,11 +110,13 @@ function SystemicRiskDashboardContent() {
               label="Total buyer exposure"
               value={formatCurrency(totalExposure(buyerExposure))}
               sub={`${buyerExposure.length} buyer${buyerExposure.length === 1 ? "" : "s"}`}
+              tooltip="Total outstanding receivables owed by each buyer (concentration limit input) — how much a single buyer's default could impact the system."
             />
             <MetricTile
               label="Peak pool correlation"
               value={formatPercent(peakCorrelation)}
               tone={peakCorrelation >= 0.6 ? "warning" : "default"}
+              tooltip="Highest cosine similarity of shared buyer exposure between any two pools — high correlation means one buyer default can hit multiple pools at once."
             />
             <MetricTile
               label="Active systemic alerts"

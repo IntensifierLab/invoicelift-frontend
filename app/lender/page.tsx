@@ -119,18 +119,25 @@ function LenderDashboardContent() {
       ) : (
         <>
           <div className="grid lender-metrics">
-            <MetricTile label="Total value locked" value={formatCurrency(tvl)} sub={`${pools.length} pool${pools.length === 1 ? "" : "s"}`} />
+            <MetricTile
+              label="Total value locked"
+              value={formatCurrency(tvl)}
+              sub={`${pools.length} pool${pools.length === 1 ? "" : "s"}`}
+              tooltip="Total capital deposited by lenders across all pools, whether currently financing invoices or sitting idle."
+            />
             <MetricTile
               label="Utilisation"
               value={formatPercent(utilisationRatio)}
               sub={`${formatCurrency(utilised)} financed`}
               tone={utilisationRatio >= 0.9 ? "warning" : "default"}
+              tooltip="Share of total value locked currently deployed into active invoice financing, rather than sitting idle."
             />
             <MetricTile
               label="Default rate"
               value={rate === undefined ? "N/A" : formatPercent(rate)}
               sub={`${delinquencies.length} tracked receivable${delinquencies.length === 1 ? "" : "s"}`}
               tone={rate !== undefined && rate > 0.05 ? "warning" : "default"}
+              tooltip="Share of tracked receivables that were written off as a loss (loss_recognised) rather than repaid."
             />
             <MetricTile
               label="Active risk alerts"
