@@ -9,6 +9,7 @@ import {
   type InvoiceRegistryRecord,
   type InvoiceRegistryState,
 } from "@/lib/invoice-registry/mock-data";
+import { CopyButton } from "@/components/ui/CopyButton";
 
 function truncate(address: string): string {
   return address.length > 12 ? `${address.slice(0, 6)}…${address.slice(-4)}` : address;
@@ -44,11 +45,18 @@ function RegistryRecordCard({ record }: { record: InvoiceRegistryRecord }) {
   return (
     <div className="card registry-record">
       <div className="registry-record-header">
-        <h3>{record.invoiceId}</h3>
+        <h3>
+          {record.invoiceId}
+          <CopyButton value={record.invoiceId} label="Copy invoice ID" />
+        </h3>
         <span className="tag">{formatCurrency(record.amount)}</span>
       </div>
       <p style={{ color: "var(--muted)" }}>
-        {record.smeName} &middot; buyer <span title={record.buyerAddress}>{truncate(record.buyerAddress)}</span>
+        {record.smeName} &middot; buyer{" "}
+        <span title={record.buyerAddress}>
+          {truncate(record.buyerAddress)}
+          <CopyButton value={record.buyerAddress} label="Copy buyer wallet address" />
+        </span>
       </p>
 
       <StateMachineStepper currentState={record.currentState} />

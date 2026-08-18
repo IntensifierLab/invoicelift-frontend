@@ -248,6 +248,60 @@ a { color: inherit; text-decoration: none; }
   color: var(--muted);
 }
 
+.wallet-menu-address {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.85rem;
+  cursor: default;
+}
+
+.copy-button-wrapper {
+  position: relative;
+  display: inline-flex;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.copy-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border-radius: 5px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.copy-button:hover {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--accent);
+}
+
+.copy-button-tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  color: var(--text);
+  font-size: 0.72rem;
+  font-weight: 600;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  z-index: 40;
+}
+
 .tag {
   display: inline-block;
   padding: 6px 10px;
