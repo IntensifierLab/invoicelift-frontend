@@ -1617,3 +1617,93 @@ a { color: inherit; text-decoration: none; }
 .yield-calculator-results .cta {
   grid-column: 1 / -1;
 }
+
+/* Risk analytics dashboard (issue #30) */
+.risk-pool-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.risk-pool-filter select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--muted) 30%, transparent);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.risk-anomaly-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.risk-anomaly-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: color-mix(in srgb, #ff8a5c 10%, transparent);
+  border: 1px solid color-mix(in srgb, #ff8a5c 35%, transparent);
+}
+
+.risk-anomaly-title {
+  font-weight: 700;
+  color: #ffb088;
+}
+
+.risk-trend-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.risk-trend-row {
+  display: grid;
+  grid-template-columns: 72px 1fr 140px;
+  align-items: center;
+  gap: 12px;
+}
+
+.risk-trend-month {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.risk-trend-bar-track {
+  height: 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  overflow: hidden;
+  display: flex;
+}
+
+.risk-trend-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+  transition: width 0.2s ease;
+}
+
+.risk-trend-bar-loss {
+  height: 100%;
+  background: #ff8a5c;
+}
+
+.risk-trend-counts {
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-align: right;
+}
+
+/* .print-hidden / @media print already defined above (issue #32) — the
+   risk dashboard's "Export as PDF" reuses that same rule rather than
+   redefining it. */
