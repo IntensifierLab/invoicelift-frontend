@@ -1536,6 +1536,50 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
+/* Buyer confirmation portal (issue #25) */
+.buyer-portal-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.buyer-portal-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  background: color-mix(in srgb, var(--surface) 88%, var(--bg));
+}
+
+.buyer-portal-row-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.9rem;
+}
+
+.buyer-portal-row-id {
+  font-weight: 700;
+}
+
+.buyer-portal-row-action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.buyer-portal-row-error {
+  color: #ffb088;
+  font-size: 0.8rem;
+  max-width: 220px;
+}
 /* Yield calculator (issue #23) */
 .yield-calculator-inputs {
   display: grid;
