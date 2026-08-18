@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { EmptyState } from "@/components/empty-state";
 import { RouteGuard } from "@/components/route-guard";
+
+export const metadata: Metadata = {
+  title: "Risk",
+  description: "Repayment monitoring and underwriting signals for financed invoices.",
+};
 
 export default function Page() {
   return (
