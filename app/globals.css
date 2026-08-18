@@ -1,4 +1,5 @@
-:root {
+:root,
+:root[data-theme="dark"] {
   --bg: #1a1005;
   --surface: #2e1d09;
   --text: #fff6ea;
@@ -6,6 +7,34 @@
   --accent: #ffc684;
   --accent-2: #fff1b8;
   --ring: color-mix(in srgb, #ffc684 35%, transparent);
+}
+
+:root[data-theme="light"] {
+  --bg: #fff8ef;
+  --surface: #ffffff;
+  --text: #241505;
+  --muted: #6b4a26;
+  --accent: #b5651d;
+  --accent-2: #8a4a12;
+  --ring: color-mix(in srgb, #b5651d 35%, transparent);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.theme-toggle:hover {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
 }
 
 * { box-sizing: border-box; }
