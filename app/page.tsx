@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand-logo";
 import { ExpectedPages } from "@/components/expected-pages";
+
+export const metadata: Metadata = {
+  description: "Turn receivables into runway: verified invoices and repayment waterfalls on Soroban.",
+};
 
 export default function HomePage() {
   return (

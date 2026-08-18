@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Roadmap",
+  description: "Milestones tied to protocol releases and grant checkpoints.",
+};
+
 export default function Page() {
   return (
     <section className="section">
