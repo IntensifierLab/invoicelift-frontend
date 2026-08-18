@@ -53,6 +53,7 @@ export const PAGE_ACCESS: Record<string, Role[]> = {
   "/lender": ["lender", "admin"],
   "/admin/systemic-risk": ["admin"],
   "/waterfall": ["lender", "admin"],
+  "/buyer-portal": ["anchor_buyer", "admin"],
 };
 
 export function isRoleAllowed(pathname: string, role: Role | undefined): boolean {
