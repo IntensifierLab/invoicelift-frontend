@@ -100,3 +100,8 @@ export function queryInvoices(query: InvoiceQuery): InvoicePage {
 export function uniqueBuyers(): string[] {
   return Array.from(new Set(MOCK_INVOICES.map((inv) => inv.buyer))).sort();
 }
+
+/** Looks up a single invoice by id (issue #32's detail/PDF view). */
+export function findInvoiceById(id: string): Invoice | undefined {
+  return MOCK_INVOICES.find((inv) => inv.id === id);
+}

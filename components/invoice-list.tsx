@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import {
@@ -177,7 +178,9 @@ export function InvoiceList() {
           <tbody>
             {result.rows.map((inv) => (
               <tr key={inv.id}>
-                <td>{inv.id}</td>
+                <td>
+                  <Link href={`/invoices/${inv.id}`}>{inv.id}</Link>
+                </td>
                 <td>{inv.smeName}</td>
                 <td>{inv.buyer}</td>
                 <td>
