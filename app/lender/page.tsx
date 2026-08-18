@@ -12,6 +12,7 @@ import { MetricTile } from "@/components/lender/metric-tile";
 import { PoolHealthChart } from "@/components/lender/pool-health-chart";
 import { SmeExposureTable } from "@/components/lender/sme-exposure-table";
 import { RouteGuard } from "@/components/route-guard";
+import { DataSkeleton } from "@/components/ui/Skeleton";
 
 // Poll interval for the "real-time" pool metrics. There's no push channel
 // (websocket/SSE) from invoicelift-backend yet, so this is the pragmatic
@@ -115,7 +116,7 @@ function LenderDashboardContent() {
       )}
 
       {loading && pools.length === 0 && errors.length === 0 ? (
-        <p className="lender-empty">Loading portfolio…</p>
+        <DataSkeleton label="pool underwriting dashboard" />
       ) : (
         <>
           <div className="grid lender-metrics">
