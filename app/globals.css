@@ -1499,3 +1499,40 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.8rem;
   max-width: 220px;
 }
+/* Yield calculator (issue #23) */
+.yield-calculator-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.yield-calculator-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.yield-calculator-field input,
+.yield-calculator-field select {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--muted) 30%, transparent);
+  background: var(--surface, transparent);
+  color: inherit;
+  font-size: 0.95rem;
+}
+
+.yield-calculator-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.yield-calculator-results p,
+.yield-calculator-results .cta {
+  grid-column: 1 / -1;
+}
