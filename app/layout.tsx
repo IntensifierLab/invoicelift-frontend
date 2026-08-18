@@ -66,8 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <ConnectWalletButton />
                 </div>
               </div>
-            </div>
-          </header>
+            </header>
           <main className="container">{children}</main>
           <SiteFooter />
           <BackToTop />
