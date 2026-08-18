@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   fetchLenderDashboardData,
@@ -104,6 +105,9 @@ function LenderDashboardContent() {
           <button type="button" className="cta-secondary" onClick={() => void load()} disabled={loading}>
             {loading ? "Refreshing…" : "Refresh"}
           </button>
+          <Link href="/calculator" className="cta-secondary">
+            Yield calculator
+          </Link>
         </div>
       </div>
 
