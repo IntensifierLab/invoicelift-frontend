@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { BackToTop } from "@/components/back-to-top";
 import { OfflineSupport } from "@/components/offline-support";
 import "./globals.css";
 import { ConnectWalletButton } from "@/components/connect-wallet-button";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { WalletProvider } from "@/components/wallet-provider";
+import { ThemeProvider, THEME_INIT_SCRIPT } from "@/lib/theme/theme-provider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000"),
@@ -36,31 +39,40 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body>
         <OfflineSupport />
-        <WalletProvider>
-          <header className="nav">
-            <div className="container nav-inner">
-              <Link href="/" className="brand brand-with-logo">
-                <Image
-                  src="/icon.svg"
-                  alt=""
-                  width={38}
-                  height={38}
-                  className="nav-logo"
-                  unoptimized
-                />
-                <span className="brand-text">InvoiceLift</span>
-              </Link>
-              <div className="nav-right">
-                <SiteNav />
-                <ConnectWalletButton />
+        <ThemeProvider>
+          <WalletProvider>
+            <header className="nav">
+              <div className="container nav-inner">
+                <Link href="/" className="brand brand-with-logo">
+                  <Image
+                    src="/icon.svg"
+                    alt=""
+                    width={38}
+                    height={38}
+                    className="nav-logo"
+                    unoptimized
+                  />
+                  <span className="brand-text">InvoiceLift</span>
+                </Link>
+                <div className="nav-right">
+                  <SiteNav />
+                  <ThemeToggle />
+                  <ConnectWalletButton />
+                </div>
               </div>
-            </div>
-          </header>
+            </header>
           <main className="container">{children}</main>
           <SiteFooter />
+          <BackToTop />
         </WalletProvider>
+        </ThemeProvider>
+
       </body>
     </html>
   );

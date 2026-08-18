@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useWallet } from "@/components/wallet-provider";
+import { CopyButton } from "@/components/ui/CopyButton";
 
 function truncate(address: string): string {
   return `${address.slice(0, 4)}…${address.slice(-4)}`;
@@ -28,6 +29,12 @@ export function ConnectWalletButton() {
           <div className="wallet-menu" role="menu">
             {status === "wrong-network" && (
               <p className="wallet-menu-warning">Switch your wallet to {expectedNetworkLabel}.</p>
+            )}
+            {address && (
+              <div className="wallet-menu-item wallet-menu-address" role="none">
+                <span>{truncate(address)}</span>
+                <CopyButton value={address} label="Copy wallet address" />
+              </div>
             )}
             <button
               type="button"

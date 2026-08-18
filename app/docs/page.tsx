@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Docs",
+  description: "Technical specs, governance, and integration guides for InvoiceLift.",
+};
+
 export default function Page() {
   return (
     <section className="section">

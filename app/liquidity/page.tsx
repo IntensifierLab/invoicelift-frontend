@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { RepaymentStatus } from "@/components/repayment-status";
 import { RepaymentWsProvider } from "@/components/repayment-ws-provider";
 import { RouteGuard } from "@/components/route-guard";
+
+export const metadata: Metadata = {
+  title: "Liquidity",
+  description: "Track your lending positions and live repayment progress on InvoiceLift.",
+};
 
 export default function Page() {
   return (

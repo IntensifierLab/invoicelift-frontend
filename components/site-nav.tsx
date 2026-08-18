@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { NotificationBell } from "@/components/notifications/notification-bell";
 import { PAGE_ACCESS } from "@/lib/auth/roles";
 import { useRole } from "@/lib/auth/use-role";
 
@@ -33,6 +34,7 @@ export function SiteNav() {
           {label}
         </Link>
       ))}
+      <NotificationBell />
     </nav>
   );
 }

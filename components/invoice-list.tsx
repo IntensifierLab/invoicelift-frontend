@@ -8,6 +8,14 @@ import {
   queryInvoices,
   uniqueBuyers,
 } from "@/lib/invoices/mock-data";
+import { StatusBadge, type BadgeStatus } from "@/components/status-badge";
+
+const BADGE_STATUS: Record<InvoiceStatus, BadgeStatus> = {
+  pending: "draft",
+  financed: "financed",
+  repaid: "repaid",
+  overdue: "defaulted",
+};
 
 const PAGE_SIZE = 10;
 const STATUSES: InvoiceStatus[] = ["pending", "financed", "repaid", "overdue"];
@@ -179,9 +187,7 @@ export function InvoiceList() {
                   {inv.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })} {inv.currency}
                 </td>
                 <td>
-                  <span className={`invoice-status invoice-status-${inv.status}`}>
-                    {STATUS_LABELS[inv.status]}
-                  </span>
+                  <StatusBadge status={BADGE_STATUS[inv.status]} />
                 </td>
                 <td>{inv.dueDate}</td>
               </tr>

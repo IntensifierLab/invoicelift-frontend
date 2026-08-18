@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   fetchLenderDashboardData,
@@ -12,6 +13,7 @@ import { MetricTile } from "@/components/lender/metric-tile";
 import { PoolHealthChart } from "@/components/lender/pool-health-chart";
 import { SmeExposureTable } from "@/components/lender/sme-exposure-table";
 import { RouteGuard } from "@/components/route-guard";
+import { DataSkeleton } from "@/components/ui/Skeleton";
 
 // Poll interval for the "real-time" pool metrics. There's no push channel
 // (websocket/SSE) from invoicelift-backend yet, so this is the pragmatic
@@ -103,6 +105,9 @@ function LenderDashboardContent() {
           <button type="button" className="cta-secondary" onClick={() => void load()} disabled={loading}>
             {loading ? "Refreshing…" : "Refresh"}
           </button>
+          <Link href="/calculator" className="cta-secondary">
+            Yield calculator
+          </Link>
         </div>
       </div>
 
@@ -115,22 +120,29 @@ function LenderDashboardContent() {
       )}
 
       {loading && pools.length === 0 && errors.length === 0 ? (
-        <p className="lender-empty">Loading portfolio…</p>
+        <DataSkeleton label="pool underwriting dashboard" />
       ) : (
         <>
           <div className="grid lender-metrics">
-            <MetricTile label="Total value locked" value={formatCurrency(tvl)} sub={`${pools.length} pool${pools.length === 1 ? "" : "s"}`} />
+            <MetricTile
+              label="Total value locked"
+              value={formatCurrency(tvl)}
+              sub={`${pools.length} pool${pools.length === 1 ? "" : "s"}`}
+              tooltip="Total capital deposited by lenders across all pools, whether currently financing invoices or sitting idle."
+            />
             <MetricTile
               label="Utilisation"
               value={formatPercent(utilisationRatio)}
               sub={`${formatCurrency(utilised)} financed`}
               tone={utilisationRatio >= 0.9 ? "warning" : "default"}
+              tooltip="Share of total value locked currently deployed into active invoice financing, rather than sitting idle."
             />
             <MetricTile
               label="Default rate"
               value={rate === undefined ? "N/A" : formatPercent(rate)}
               sub={`${delinquencies.length} tracked receivable${delinquencies.length === 1 ? "" : "s"}`}
               tone={rate !== undefined && rate > 0.05 ? "warning" : "default"}
+              tooltip="Share of tracked receivables that were written off as a loss (loss_recognised) rather than repaid."
             />
             <MetricTile
               label="Active risk alerts"

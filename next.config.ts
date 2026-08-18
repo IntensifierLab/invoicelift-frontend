@@ -3,6 +3,16 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  images: {
+    // AVIF first (smaller than WebP at equivalent quality on most photos),
+    // falling back to WebP for browsers/devices that don't support it yet.
+    // next/image negotiates via Accept, so this is free — no extra requests.
+    formats: ["image/avif", "image/webp"],
+    // Matches the responsive breakpoints this app's CSS grid layouts
+    // already use (see .grid and its siblings in app/globals.css), so
+    // next/image never generates a size the layout can't use.
+    deviceSizes: [360, 480, 640, 768, 1024, 1280, 1536],
+  },
 };
 
 export default nextConfig;
