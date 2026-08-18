@@ -13,6 +13,7 @@ import { MetricTile } from "@/components/lender/metric-tile";
 import { PoolCorrelationMatrix } from "@/components/admin/pool-correlation-matrix";
 import { SmeExposureTable } from "@/components/lender/sme-exposure-table";
 import { RouteGuard } from "@/components/route-guard";
+import { DataSkeleton } from "@/components/ui/Skeleton";
 
 // Same pragmatic stand-in for a push channel as the lender dashboard: no
 // websocket/SSE from invoicelift-backend yet, so a short poll interval
@@ -101,7 +102,7 @@ function SystemicRiskDashboardContent() {
       )}
 
       {loading && pools.length === 0 && errors.length === 0 ? (
-        <p className="lender-empty">Loading systemic risk data…</p>
+        <DataSkeleton label="systemic risk data" />
       ) : (
         <>
           <div className="grid lender-metrics">
